@@ -9,9 +9,10 @@ class CalculatorPg extends Component {
           <h2>Calculator</h2>
           <Calculator />
         </main>
-        <footer>Photo by Clem Onojeghuo on Unsplash</footer>
+        <footer>
+          <p>Photo by Clem Onojeghuo on Unsplash</p>
+        </footer>
       </>
-
     );
   }
 }
