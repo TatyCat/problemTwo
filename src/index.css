@@ -165,17 +165,6 @@
         color: #ffffff;
       }
 
-      .keys button:active {
-        box-shadow: 0px 0px rgba(0, 0, 0, 0.2);
+      .keys button:active, .keys button.eval:active, button.clear:active {
         top: 4px;
-      }
-
-      .keys button.eval:active {
-        box-shadow: 0px 0px #717a33;
-        top: 4px;
-      }
-
-      .top button.clear:active {
-        top: 4px;
-        box-shadow: 0px 0px #c1010e;
       }
