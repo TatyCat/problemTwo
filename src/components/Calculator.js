@@ -9,7 +9,8 @@ class Calculator extends Component {
       result: "",
       numberPressed: "",
       numberSet: "",
-      operator: []
+      operator: [],
+      finalExpression: ""
     }
   }
 
@@ -18,6 +19,7 @@ class Calculator extends Component {
     this.setState({ numberPressed: "" })
     this.setState({ numberSet: "" })
     this.setState({ operator: [] })
+    this.setState({ finalExpression: "" })
   }
 
   componentDidMount() { this.clearCalculator() }
@@ -45,20 +47,18 @@ class Calculator extends Component {
 
   operator = (addOperator) => {
     if (this.state.operator.length !== 0) {
+      // If user needs to change the operator, below switches out operator.
       this.setState({ operator: addOperator })
     }
     this.setState({ numberSet: this.state.numberSet.concat(this.state.numberPressed) })
     this.setState({ numberPressed: "" })
-    this.setState({ operator: addOperator })
+    this.setState({ finalExpression: this.state.finalExpression + this.state.numberPressed + addOperator })
   }
 
   calculate = () => {
     if (this.state.result === "") {
-      this.setState({ numberSet: this.state.numberSet.concat(this.state.numberPressed) })
-
+      this.setState({ result: eval(this.state.finalExpression + this.state.numberPressed) })
       this.setState({ numberPressed: "" })
-
-      this.setState({ result: eval(`${this.state.numberSet} ${this.state.operator} ${this.state.numberPressed}`) })
     }
   }
 
@@ -104,8 +104,8 @@ export default Calculator;
 
 // 1. [x] get input of buttons to display on top screen
 // 2. [x] +/- button toggle
-// 3. [] Chained operators and numbers 
-// 3. [] Check accuracy of calculator
+// 3. [x] Chained operators and numbers 
+// 3. [x] Check accuracy of calculator
 
 
 // >>1a. text gets smaller with more numbers
