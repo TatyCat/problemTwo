@@ -8,7 +8,7 @@ class Calculator extends Component {
     this.state = {
       result: "",
       numberPressed: "",
-      numberSet: [],
+      numberSet: "",
       operator: []
     }
   }
@@ -22,8 +22,11 @@ class Calculator extends Component {
 
   componentDidMount() { this.clearCalculator() }
 
-  percent() {
+  togglePositivity = () => {
+    this.setState({ numberPressed: Math.sign(this.state.numberPressed) < 0 ? Math.abs(this.state.numberPressed) : -Math.abs(this.state.numberPressed) })
+  }
 
+  percent = () => {
     this.setState({ numberPressed: parseFloat(this.state.numberPressed / 100).toFixed(2) })
 
     // 72 +5% = 3.6  === (72 * 5% ==3.6)
@@ -51,13 +54,12 @@ class Calculator extends Component {
     if (this.state.operator.length !== 0) {
       this.setState({ operator: addOperator })
     }
-    this.setState({ numberSet: this.state.numberPressed })
+    this.setState({ numberSet: this.state.numberSet.concat(this.state.numberPressed) })
     this.setState({ numberPressed: "" })
     this.setState({ operator: addOperator })
   }
 
   calculate = () => {
-
     if (this.state.result === "") {
       this.setState({ numberSet: this.state.numberSet.concat(this.state.numberPressed) })
 
@@ -78,7 +80,7 @@ class Calculator extends Component {
 
           <div className="keys">
             <button className="clear" onClick={this.clearCalculator}>ac</button>
-            <button onClick={this.addNumber}>+/-</button>
+            <button onClick={this.togglePositivity}>+/-</button>
             <button onClick={this.addNumber}>%</button>
             <button className="operator" onClick={() => { this.operator("/") }}>÷</button>
             <button onClick={this.addNumber}>7</button>
@@ -108,5 +110,9 @@ export default Calculator;
 
 
 // 1. [x] get input of buttons to display on top screen
+// 2. [x] +/- button toggle
+// 3. [] Chained operators and numbers 
+// 3. [] Check accuracy of calculator
+
 
 // >>1a. text gets smaller with more numbers
