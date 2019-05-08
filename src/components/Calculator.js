@@ -16,7 +16,7 @@ class Calculator extends Component {
   clearCalculator = () => {
     this.setState({ result: "" })
     this.setState({ numberPressed: "" })
-    this.setState({ numberSet: [] })
+    this.setState({ numberSet: "" })
     this.setState({ operator: [] })
   }
 
@@ -28,14 +28,7 @@ class Calculator extends Component {
 
   percent = () => {
     this.setState({ numberPressed: parseFloat(this.state.numberPressed / 100).toFixed(2) })
-
-    // 72 +5% = 3.6  === (72 * 5% ==3.6)
-    // 5% + 72 = 72.05
-    // 5% = .05 x 10 = 40
-    //  40 x 25% converts to 10 automatically 
-    // 25% x 40 = 10
   }
-
 
   addNumber = (e) => {
     if (this.state.result !== "") {
