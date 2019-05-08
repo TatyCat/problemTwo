@@ -8,7 +8,6 @@ class Calculator extends Component {
     this.state = {
       result: "",
       numberPressed: "",
-      numberSet: "",
       operator: [],
       finalExpression: ""
     }
@@ -17,7 +16,6 @@ class Calculator extends Component {
   clearCalculator = () => {
     this.setState({ result: "" })
     this.setState({ numberPressed: "" })
-    this.setState({ numberSet: "" })
     this.setState({ operator: [] })
     this.setState({ finalExpression: "" })
   }
@@ -50,14 +48,13 @@ class Calculator extends Component {
       // If user needs to change the operator, below switches out operator.
       this.setState({ operator: addOperator })
     }
-    this.setState({ numberSet: this.state.numberSet.concat(this.state.numberPressed) })
-    this.setState({ numberPressed: "" })
     this.setState({ finalExpression: this.state.finalExpression + this.state.numberPressed + addOperator })
+    this.setState({ numberPressed: "" })
   }
 
   calculate = () => {
     if (this.state.result === "") {
-      this.setState({ result: eval(this.state.finalExpression + this.state.numberPressed) })
+      this.setState({ result: eval(this.state.finalExpression + this.state.numberPressed).toLocaleString() })
       this.setState({ numberPressed: "" })
     }
   }
