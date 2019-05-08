@@ -1,4 +1,4 @@
 Using React, I built a client-side calculator. 
 
 
-![Calculator Image](.png)
+![Calculator Image](calculator_screenshot.png)
